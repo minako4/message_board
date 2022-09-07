@@ -2,7 +2,6 @@ package controllers;
 
 import java.io.IOException;
 
-import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Message;
-import utils.DBUtil;
 
 /**
  * Servlet implementation class NewServlet
@@ -37,10 +35,8 @@ public class NewServlet extends HttpServlet {
         //おまじないとしてのインスタンスを生成
         request.setAttribute("message", new Message());
 
-        EntityManager em = DBUtil.createEntityManager();
-        em.getTransaction().begin();
-
-        RequestDispatcher rd =request.getRequestDispatcher("/WEB-INF/views/messages/new.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/new.jsp");
         rd.forward(request, response);
+
     }
 }
